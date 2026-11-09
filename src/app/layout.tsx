@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import type { Metadata } from "next";
 import { Manrope, Unbounded } from "next/font/google";
 import { CookieConsent } from "@/components/CookieConsent";
+import { YandexMetrika } from "@/components/YandexMetrika";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ThemeRegistry } from "@/components/ThemeRegistry";
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Box sx={{ flex: 1 }}>{children}</Box>
             <Footer shopUrl={OZON_BRAND_URL} />
             <CookieConsent />
+            <YandexMetrika />
           </Box>
         </ThemeRegistry>
       </body>

@@ -10,3 +10,6 @@ export const FACTORY_URL = "http://www.fowyad.com/ru_RU/index.html";
 
 /** Публичный адрес для обращений по персональным данным. Пусто, пока реквизиты не заданы. */
 export const LEGAL_CONTACT = process.env.NEXT_PUBLIC_LEGAL_CONTACT?.trim() || "";
+
+/** Счётчик Яндекс Метрики. Подключается только после согласия «Принять». */
+export const METRIKA_ID = 114151564;

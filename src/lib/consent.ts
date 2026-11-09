@@ -1,5 +1,5 @@
 export const CONSENT_STORAGE_KEY = "fowyad-consent";
-export const CONSENT_VERSION = "2026-11-07";
+export const CONSENT_VERSION = "2026-11-09";
 export const CONSENT_EVENT = "fowyad:cookie-settings";
 
 export type ConsentChoice = "all" | "necessary";
@@ -30,7 +30,40 @@ export function writeConsent(choice: ConsentChoice) {
   return record;
 }
 
-/** Аналитику и рекламные скрипты можно подключать только после явного «Принять». */
+const listeners = new Set<() => void>();
+let reopen = false;
+let settingsBound = false;
+
+function emit() {
+  listeners.forEach((listener) => listener());
+}
+
+function bindSettings() {
+  if (settingsBound || typeof window === "undefined") return;
+  settingsBound = true;
+  window.addEventListener(CONSENT_EVENT, () => {
+    reopen = true;
+    emit();
+  });
+}
+
+export function subscribeConsent(listener: () => void) {
+  bindSettings();
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+export function dialogOpen() {
+  return reopen || readConsent() === null;
+}
+
+/** Яндекс Метрику можно подключать только после явного «Принять». */
 export function allowsAnalytics() {
   return readConsent()?.choice === "all";
+}
+
+export function chooseConsent(choice: ConsentChoice) {
+  writeConsent(choice);
+  reopen = false;
+  emit();
 }

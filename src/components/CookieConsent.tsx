@@ -6,42 +6,14 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { useSyncExternalStore } from "react";
-import { CONSENT_EVENT, readConsent, writeConsent, type ConsentChoice } from "@/lib/consent";
-
-const listeners = new Set<() => void>();
-let reopen = false;
-
-function dialogOpen() {
-  return reopen || readConsent() === null;
-}
-
-function emit() {
-  listeners.forEach((listener) => listener());
-}
-
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  const show = () => {
-    reopen = true;
-    emit();
-  };
-  window.addEventListener(CONSENT_EVENT, show);
-  return () => {
-    listeners.delete(listener);
-    window.removeEventListener(CONSENT_EVENT, show);
-  };
-}
+import { chooseConsent, dialogOpen, subscribeConsent, type ConsentChoice } from "@/lib/consent";
 
 export function CookieConsent() {
-  const open = useSyncExternalStore(subscribe, dialogOpen, () => false);
+  const open = useSyncExternalStore(subscribeConsent, dialogOpen, () => false);
 
   if (!open) return null;
 
-  const choose = (choice: ConsentChoice) => {
-    writeConsent(choice);
-    reopen = false;
-    emit();
-  };
+  const choose = (choice: ConsentChoice) => chooseConsent(choice);
 
   return (
     <Box
@@ -68,14 +40,17 @@ export function CookieConsent() {
         Cookie и данные на этом сайте
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        Форм и счётчиков аналитики нет. В браузере сохраняется только ваш выбор по этой панели: он остаётся на устройстве и на сервер не отправляется. Рекламные cookie не используются. Текст согласия отдельный, его можно отозвать внизу страницы.
+        «Принять» разрешает Яндекс Метрику: cookie счётчика, карту кликов, вебвизор и учёт переходов. Эти сведения обрабатывает ООО «ЯНДЕКС». «Только необходимые» оставляет в браузере лишь запись об этом выборе, счётчик не подключается. Рекламные cookie не используются. Согласие можно изменить внизу страницы.
       </Typography>
       <Link component={NextLink} href="/privacy" underline="hover" sx={{ display: "inline-block", mt: 1.5 }}>
         Политика использования персональных данных
       </Link>
-      <Box sx={{ mt: 2 }}>
+      <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1.5 }}>
         <Button variant="contained" onClick={() => choose("all")}>
           Принять
+        </Button>
+        <Button variant="outlined" color="inherit" onClick={() => choose("necessary")}>
+          Только необходимые
         </Button>
       </Box>
     </Box>
