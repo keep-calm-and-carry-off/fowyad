@@ -6,14 +6,12 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { useSyncExternalStore } from "react";
-import { chooseConsent, dialogOpen, subscribeConsent, type ConsentChoice } from "@/lib/consent";
+import { chooseConsent, dialogOpen, subscribeConsent } from "@/lib/consent";
 
 export function CookieConsent() {
   const open = useSyncExternalStore(subscribeConsent, dialogOpen, () => false);
 
   if (!open) return null;
-
-  const choose = (choice: ConsentChoice) => chooseConsent(choice);
 
   return (
     <Box
@@ -40,17 +38,14 @@ export function CookieConsent() {
         Cookie и данные на этом сайте
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        «Принять» разрешает Яндекс Метрику: cookie счётчика, карту кликов, вебвизор и учёт переходов. Эти сведения обрабатывает ООО «ЯНДЕКС». «Только необходимые» оставляет в браузере лишь запись об этом выборе, счётчик не подключается. Рекламные cookie не используются. Согласие можно изменить внизу страницы.
+        «Принять» разрешает Яндекс Метрику: cookie счётчика, карту кликов, вебвизор и учёт переходов. Эти сведения обрабатывает ООО «ЯНДЕКС». Рекламные cookie не используются.
       </Typography>
       <Link component={NextLink} href="/privacy" underline="hover" sx={{ display: "inline-block", mt: 1.5 }}>
         Политика использования персональных данных
       </Link>
-      <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-        <Button variant="contained" onClick={() => choose("all")}>
+      <Box sx={{ mt: 2 }}>
+        <Button variant="contained" onClick={() => chooseConsent("all")}>
           Принять
-        </Button>
-        <Button variant="outlined" color="inherit" onClick={() => choose("necessary")}>
-          Только необходимые
         </Button>
       </Box>
     </Box>
