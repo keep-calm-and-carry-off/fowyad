@@ -1,0 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #ff3b30;
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
