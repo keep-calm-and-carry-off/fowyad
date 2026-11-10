@@ -5,7 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three/addons/controls/OrbitControls.js";
-import { DRACO_PATH, liveryTextures, MODEL_URL } from "./assets";
+import { BADGE_URL, DRACO_PATH, liveryTextures, MODEL_URL } from "./assets";
 import { buildCar } from "./build-car";
 import { collectWheels, type CarDims } from "./model-bounds";
 
@@ -23,10 +23,10 @@ function frameCamera(camera: THREE.Camera, controls: OrbitControlsImpl | null, d
 
 export function CarView({ reduced, onReady }: { reduced: boolean; onReady?: () => void }) {
   const gltf = useGLTF(MODEL_URL, DRACO_PATH, false);
-  const [sideMap, hoodMap, rearMap, sprayMap] = useTexture([...liveryTextures]);
+  const [sideMap, hoodMap, rearMap, sprayMap, badgeMap] = useTexture([...liveryTextures, BADGE_URL]);
   const model = useMemo(
-    () => buildCar(gltf.scene, { side: sideMap, hood: hoodMap, rear: rearMap, spray: sprayMap }),
-    [gltf.scene, sideMap, hoodMap, rearMap, sprayMap],
+    () => buildCar(gltf.scene, { side: sideMap, hood: hoodMap, rear: rearMap, spray: sprayMap }, badgeMap),
+    [gltf.scene, sideMap, hoodMap, rearMap, sprayMap, badgeMap],
   );
   const group = useRef<THREE.Group>(null);
   const wheels = useRef<THREE.Object3D[]>([]);

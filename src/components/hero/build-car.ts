@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { placeBadges } from "./badge";
 import { LIVERY_VERSION, placeLivery, type LiveryMaps } from "./livery";
 import { visibleBounds, type CarDims } from "./model-bounds";
 
@@ -79,13 +80,14 @@ function fitOnGround(model: THREE.Object3D): CarDims {
   return { length: isLengthX ? fittedSize.x : fittedSize.z, height: fittedSize.y, isLengthX };
 }
 
-export function buildCar(source: THREE.Object3D, maps: LiveryMaps) {
+export function buildCar(source: THREE.Object3D, maps: LiveryMaps, badge: THREE.Texture) {
   const model = source.clone(true);
   tuneMeshes(model);
   dropOversized(model);
   model.userData.dims = fitOnGround(model);
   model.updateWorldMatrix(true, true);
   placeLivery(model, maps);
+  placeBadges(model, badge);
   model.userData.livery = LIVERY_VERSION;
   return model;
 }

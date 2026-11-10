@@ -3,7 +3,6 @@
 import Box from "@mui/material/Box";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { asset } from "@/lib/base-path";
 
 const HeroCanvas = dynamic(() => import("./HeroCanvas").then((mod) => mod.HeroCanvas), { ssr: false });
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
@@ -47,22 +46,22 @@ export function HeroStage() {
       }}
     >
       {live ? null : (
-        <Box
-          component="img"
-          src={asset("/hero-stage.webp")}
-          alt=""
-          width={1440}
-          height={396}
-          fetchPriority="high"
-          sx={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
-        />
+        <Box sx={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
+          <Box
+            sx={{
+              width: 64,
+              height: 64,
+              borderRadius: "50%",
+              border: "4px solid rgba(255, 59, 48, 0.2)",
+              borderTopColor: "#ff3b30",
+              boxShadow: "0 0 28px rgba(255, 59, 48, 0.35)",
+              animation: reduced ? "none" : "fowyad-spin 0.75s linear infinite",
+              "@keyframes fowyad-spin": {
+                to: { transform: "rotate(360deg)" },
+              },
+            }}
+          />
+        </Box>
       )}
       {show ? <HeroCanvas reduced={reduced} onReady={() => setLive(true)} /> : null}
     </Box>
