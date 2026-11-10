@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/#contacts", label: "Контакты" },
   { href: "/#faq", label: "Вопросы" },
   { href: "/#company", label: "О компании" },
+  { href: "/consent", label: "Согласие" },
   { href: "/privacy", label: "Персональные данные" },
 ];
 

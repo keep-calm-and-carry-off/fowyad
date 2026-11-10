@@ -1,5 +1,5 @@
 export const CONSENT_STORAGE_KEY = "fowyad-consent";
-export const CONSENT_VERSION = "2026-11-10";
+export const CONSENT_VERSION = "2026-11-10-2";
 export const CONSENT_EVENT = "fowyad:cookie-settings";
 
 export type ConsentChoice = "all" | "necessary";

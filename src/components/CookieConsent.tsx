@@ -7,7 +7,6 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { useSyncExternalStore } from "react";
-import { WHOLESALE } from "@/lib/config";
 import { chooseConsent, dialogOpen, subscribeConsent } from "@/lib/consent";
 
 export function CookieConsent() {
@@ -37,13 +36,13 @@ export function CookieConsent() {
       }}
     >
       <Typography id="cookie-title" sx={{ fontWeight: 700 }}>
-        Согласие на Яндекс Метрику
+        Согласие
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        Оператор — {WHOLESALE.legalName}. «Принять» даёт отдельное согласие обрабатывать сведения визита: cookie счётчика, IP-адрес, адрес страницы, источник перехода, данные браузера, клики и запись вебвизора. Цель — видеть посещаемость сайта. Сведения получает ООО «ЯНДЕКС» и обрабатывает их в России. Согласие действует, пока его не отзовут. «Отклонить» отзывает согласие и отключает счётчик, сайт при этом остаётся доступен. Рекламные cookie не используются.
+        «Принять» — согласие на cookie и на обработку персональных данных. «Отклонить» оставляет сайт открытым.
       </Typography>
-      <Link component={NextLink} href="/privacy" underline="hover" sx={{ display: "inline-block", mt: 1.5 }}>
-        Политика обработки персональных данных
+      <Link component={NextLink} href="/consent" underline="hover" sx={{ display: "inline-block", mt: 1.5 }}>
+        Текст согласия
       </Link>
       <Stack direction="row" spacing={1.5} sx={{ mt: 2 }}>
         <Button variant="contained" onClick={() => chooseConsent("all")}>
