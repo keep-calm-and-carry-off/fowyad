@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { DecalGeometry } from "three/addons/geometries/DecalGeometry.js";
 import { visibleBounds } from "./model-bounds";
 
-export const LIVERY_VERSION = 9;
+export const LIVERY_VERSION = 10;
 
 export type LiveryMaps = {
   side: THREE.Texture;
@@ -150,7 +150,7 @@ export function placeLivery(model: THREE.Object3D, maps: LiveryMaps) {
     break;
   }
 
-  const rearSize = new THREE.Vector3(width * 0.36, width * 0.36 * (500 / 1700), 0.08);
+  const rearSize = new THREE.Vector3(width * 0.36, width * 0.36 * (620 / 1700), 0.08);
   const backward = front.clone().negate();
   for (const height of [0.54, 0.5, 0.58]) {
     const rearOrigin = center.clone();

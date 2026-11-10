@@ -8,10 +8,19 @@ export function CookieSettingsButton() {
     <Link
       component="button"
       type="button"
-      color="text.secondary"
+      color="text.primary"
       underline="hover"
       onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))}
-      sx={{ font: "inherit", cursor: "pointer", verticalAlign: "baseline" }}
+      sx={{
+        alignSelf: "flex-start",
+        p: 0,
+        border: 0,
+        font: "inherit",
+        fontSize: "0.95rem",
+        lineHeight: 1.5,
+        textAlign: "left",
+        cursor: "pointer",
+      }}
     >
       Настройки cookie
     </Link>

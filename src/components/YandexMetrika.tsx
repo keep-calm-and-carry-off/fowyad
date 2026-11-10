@@ -40,12 +40,39 @@ function installMetrika() {
     ssr: true,
     webvisor: true,
     clickmap: true,
-    ecommerce: "dataLayer",
     referrer: document.referrer,
     url: location.href,
     accurateTrackBounce: true,
     trackLinks: true,
   });
+}
+
+function clearMetrikaCookies() {
+  const host = location.hostname;
+  const names = document.cookie
+    .split(";")
+    .map((part) => part.trim().split("=")[0])
+    .filter((name) => name.startsWith("_ym"));
+  for (const name of names) {
+    for (const domain of ["", host, `.${host}`]) {
+      const scope = domain ? `; domain=${domain}` : "";
+      document.cookie = `${name}=; Max-Age=0; path=/${scope}`;
+    }
+  }
+}
+
+function disableMetrika() {
+  if (!ready) return;
+  const host = window as Window & { ym?: MetrikaFn };
+  try {
+    host.ym?.(METRIKA_ID, "destruct");
+  } catch {
+    // Счётчик уже мог не отвечать на destruct: ниже он всё равно отключается.
+  }
+  delete host.ym;
+  document.querySelectorAll('script[src*="mc.yandex.ru"]').forEach((node) => node.remove());
+  clearMetrikaCookies();
+  ready = false;
 }
 
 export function YandexMetrika() {

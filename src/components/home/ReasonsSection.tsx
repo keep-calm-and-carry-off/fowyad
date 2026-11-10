@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { reasons } from "@/content/home";
-import { displayFont, Section, SectionHead, ShopButton } from "./primitives";
+import { ActionRow, AvitoButton, displayFont, Section, SectionHead, ShopButton } from "./primitives";
 
 export function ReasonsSection() {
   return (
@@ -20,7 +20,10 @@ export function ReasonsSection() {
           </Box>
         ))}
       </Box>
-      <ShopButton sx={{ mt: 5 }}>Купить FOWYAD</ShopButton>
+      <ActionRow sx={{ mt: 5 }}>
+        <ShopButton>Купить на Ozon</ShopButton>
+        <AvitoButton>Купить на Авито</AvitoButton>
+      </ActionRow>
     </Section>
   );
 }

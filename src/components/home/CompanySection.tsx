@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { companyFacts } from "@/content/home";
 import { FACTORY_URL } from "@/lib/config";
-import { FactStack, Section, ShopButton } from "./primitives";
+import { ActionRow, AvitoButton, FactStack, Section, ShopButton } from "./primitives";
 
 export function CompanySection() {
   return (
@@ -27,14 +26,15 @@ export function CompanySection() {
             Оптика и кузовные детали для Opel
           </Typography>
           <Typography color="text.secondary" sx={{ mt: 2, lineHeight: 1.7, maxWidth: 520 }}>
-            Для Opel есть фары, стёкла, фонари, бамперы, решётки и пластик. Завод — Zhenjiang Fowyad Auto Parts Co., Ltd. Купить FOWYAD можно на нескольких площадках, включая Ozon.
+            Для Opel есть фары, стёкла, фонари, бамперы, решётки и пластик. Завод — Zhenjiang Fowyad Auto Parts Co., Ltd. В России розница — на Ozon и на Авито, оптовые заказы принимает Евгений в Москве.
           </Typography>
-          <Stack direction="row" spacing={1.5} sx={{ mt: 3.5, flexWrap: "wrap" }}>
-            <ShopButton>Купить FOWYAD</ShopButton>
+          <ActionRow sx={{ mt: 3.5 }}>
+            <ShopButton>Купить на Ozon</ShopButton>
+            <AvitoButton>Купить на Авито</AvitoButton>
             <Button href={FACTORY_URL} target="_blank" rel="noreferrer" variant="outlined" color="inherit">
               Сайт завода
             </Button>
-          </Stack>
+          </ActionRow>
         </Box>
         <FactStack items={companyFacts} sx={{ alignSelf: "end" }} />
       </Box>

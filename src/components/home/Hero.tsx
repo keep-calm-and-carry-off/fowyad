@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { HeroStage } from "@/components/hero/HeroStage";
 import { heroStats } from "@/content/home";
-import { ShopButton, Stat } from "./primitives";
+import { ActionRow, AvitoButton, ShopButton, Stat } from "./primitives";
 
 export function Hero() {
   return (
@@ -30,14 +29,15 @@ export function Hero() {
               Фары и кузовные детали
             </Typography>
             <Typography color="text.secondary" sx={{ maxWidth: 440, mt: 2.5, fontSize: "1.08rem", lineHeight: 1.65 }}>
-              Для Opel — оптика и кузовные детали FOWYAD. Купить можно на нескольких площадках, включая Ozon.
+              С завода FOWYAD в Чжэньцзяне — на Opel. Представительство завода в Москве.
             </Typography>
-            <Stack direction="row" spacing={1.5} sx={{ mt: 3.5, pointerEvents: "auto", flexWrap: "wrap" }}>
-              <ShopButton>Купить FOWYAD</ShopButton>
-              <Button href="#factory" variant="outlined" color="inherit">
-                Завод
+            <ActionRow sx={{ mt: 3.5, pointerEvents: "auto" }}>
+              <ShopButton>Купить на Ozon</ShopButton>
+              <AvitoButton>Купить на Авито</AvitoButton>
+              <Button href="#contacts" variant="outlined" color="inherit">
+                Оптовый заказ
               </Button>
-            </Stack>
+            </ActionRow>
           </Box>
           <Box
             sx={{

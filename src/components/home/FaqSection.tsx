@@ -12,7 +12,7 @@ export function FaqSection() {
         gap: { xs: 4, md: 8 },
       }}
     >
-      <SectionHead kicker="05" title="Вопросы о покупке" />
+      <SectionHead kicker="06" title="Вопросы о покупке" />
       <FaqList items={faq} />
     </Section>
   );

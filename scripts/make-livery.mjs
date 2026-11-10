@@ -61,7 +61,8 @@ function createCanvas(width, height) {
 }
 
 async function loadLogo(width) {
-  const height = Math.max(1, Math.round(284 * (width / 1178)));
+  const meta = await sharp("C:/rzserver/fowyad/public/logo.png").metadata();
+  const height = Math.max(1, Math.round(meta.height * (width / meta.width)));
   return sharp("C:/rzserver/fowyad/public/logo.png").resize(width, height).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 }
 
@@ -78,7 +79,6 @@ function stampLogo(canvas, logo, offsetX, offsetY, splatter) {
       const px = left + x;
       const py = top + y;
       const red = logo.data[source] > 150 && logo.data[source + 1] < 100;
-      canvas.paint(px + 5, py + 7, RED[0], RED[1], RED[2], alpha * 0.28);
       canvas.paint(px, py, logo.data[source], logo.data[source + 1], logo.data[source + 2], alpha);
       if (splatter && rand() < 0.045) {
         const angle = rand() * Math.PI * 2;
@@ -141,7 +141,7 @@ side.mist(900, 340, 760, 250, RED[0], RED[1], RED[2], 42);
 side.streak(180, 560, 1620, 590, 7, RED[0], RED[1], RED[2], 150);
 side.streak(260, 180, 1500, 150, 3.5, WHITE[0], WHITE[1], WHITE[2], 90);
 sprayField(side, 900, 360, 780);
-stampLogo(side, await loadLogo(1460), 170, 175, true);
+stampLogo(side, await loadLogo(1460), 170, 175, false);
 await save(side, "livery-side");
 
 const hood = createCanvas(1500, 900);

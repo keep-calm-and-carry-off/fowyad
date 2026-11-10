@@ -42,7 +42,19 @@ function emblemDiameter(width: number, height: number) {
   return longer / shorter < 1.6 ? longer : shorter;
 }
 
-function replaceEmblem(model: THREE.Object3D, mesh: THREE.Mesh, material: THREE.Material, lengthAxis: "x" | "z", carCenter: THREE.Vector3) {
+function isGlass(mesh: THREE.Mesh) {
+  const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
+  return /glass|wind/i.test(material?.name ?? "");
+}
+
+function replaceEmblem(
+  model: THREE.Object3D,
+  mesh: THREE.Mesh,
+  emblems: THREE.Mesh[],
+  material: THREE.Material,
+  lengthAxis: "x" | "z",
+  carCenter: THREE.Vector3,
+) {
   if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
   const localBox = mesh.geometry.boundingBox;
   if (!localBox) return;
@@ -52,11 +64,29 @@ function replaceEmblem(model: THREE.Object3D, mesh: THREE.Mesh, material: THREE.
   const scale = model.getWorldScale(new THREE.Vector3());
   const face = AXES.filter((axis) => axis !== lengthAxis).map((axis) => worldSize[axis] / scale[axis]);
   const outward = Math.sign(center[lengthAxis] - carCenter[lengthAxis]) || 1;
-  const localCenter = model.worldToLocal(center);
-  localCenter[lengthAxis] += outward * (worldSize[lengthAxis] / scale[lengthAxis] / 2 + 0.4);
-  const normal = new THREE.Vector3();
-  normal[lengthAxis] = outward;
-  addDisc(model, localCenter, normal, emblemDiameter(face[0], face[1]), material);
+  const direction = new THREE.Vector3();
+  direction[lengthAxis] = -outward;
+  const origin = center.clone();
+  origin[lengthAxis] += outward * 0.8;
+  const hits = new THREE.Raycaster(origin, direction).intersectObject(model, true);
+  let placed = false;
+  for (const hit of hits) {
+    const surface = hit.object as THREE.Mesh;
+    if (!hit.face || emblems.includes(surface) || isGlass(surface)) continue;
+    const normal = hit.face.normal.clone().transformDirection(surface.matrixWorld).normalize();
+    if (normal[lengthAxis] * outward < 0.45) continue;
+    const point = model.worldToLocal(hit.point.clone().addScaledVector(normal, 0.004));
+    addDisc(model, point, normal, emblemDiameter(face[0], face[1]), material);
+    placed = true;
+    break;
+  }
+  if (!placed) {
+    const fallback = model.worldToLocal(center.clone());
+    fallback[lengthAxis] += outward * 0.2;
+    const normal = new THREE.Vector3();
+    normal[lengthAxis] = outward;
+    addDisc(model, fallback, normal, emblemDiameter(face[0], face[1]), material);
+  }
   mesh.visible = false;
 }
 
@@ -124,6 +154,6 @@ export function placeBadges(model: THREE.Object3D, texture: THREE.Texture) {
     if (mesh.isMesh && (mesh.parent?.name === "logo" || mesh.parent?.name === "logo001")) emblems.push(mesh);
     if (child.name.startsWith("Wheel_")) wheels.push(child);
   });
-  emblems.forEach((mesh) => replaceEmblem(model, mesh, material, lengthAxis, carCenter));
+  emblems.forEach((mesh) => replaceEmblem(model, mesh, emblems, material, lengthAxis, carCenter));
   wheels.forEach((wheel) => placeWheelBadge(wheel, material, carCenter));
 }

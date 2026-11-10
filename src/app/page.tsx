@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import type { Metadata } from "next";
 import { CompanySection } from "@/components/home/CompanySection";
+import { ContactsSection } from "@/components/home/ContactsSection";
 import { FactorySection } from "@/components/home/FactorySection";
 import { FaqSection } from "@/components/home/FaqSection";
 import { Hero } from "@/components/home/Hero";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <ModelsSection />
       <FactorySection />
       <ReasonsSection />
+      <ContactsSection />
       <FaqSection />
       <CompanySection />
     </Box>

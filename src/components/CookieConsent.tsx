@@ -3,9 +3,11 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { useSyncExternalStore } from "react";
+import { WHOLESALE } from "@/lib/config";
 import { chooseConsent, dialogOpen, subscribeConsent } from "@/lib/consent";
 
 export function CookieConsent() {
@@ -35,19 +37,22 @@ export function CookieConsent() {
       }}
     >
       <Typography id="cookie-title" sx={{ fontWeight: 700 }}>
-        Cookie и данные на этом сайте
+        Согласие на Яндекс Метрику
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        «Принять» разрешает Яндекс Метрику: cookie счётчика, карту кликов, вебвизор и учёт переходов. Эти сведения обрабатывает ООО «ЯНДЕКС». Рекламные cookie не используются.
+        Оператор — {WHOLESALE.legalName}. «Принять» даёт отдельное согласие обрабатывать сведения визита: cookie счётчика, IP-адрес, адрес страницы, источник перехода, данные браузера, клики и запись вебвизора. Цель — видеть посещаемость сайта. Сведения получает ООО «ЯНДЕКС» и обрабатывает их в России. Согласие действует, пока его не отзовут. «Отклонить» отзывает согласие и отключает счётчик, сайт при этом остаётся доступен. Рекламные cookie не используются.
       </Typography>
       <Link component={NextLink} href="/privacy" underline="hover" sx={{ display: "inline-block", mt: 1.5 }}>
-        Политика использования персональных данных
+        Политика обработки персональных данных
       </Link>
-      <Box sx={{ mt: 2 }}>
+      <Stack direction="row" spacing={1.5} sx={{ mt: 2 }}>
         <Button variant="contained" onClick={() => chooseConsent("all")}>
           Принять
         </Button>
-      </Box>
+        <Button variant="outlined" color="inherit" onClick={() => chooseConsent("necessary")}>
+          Отклонить
+        </Button>
+      </Stack>
     </Box>
   );
 }

@@ -20,7 +20,7 @@ const LINKS = [
   { href: "/#company", label: "О компании" },
 ];
 
-export function Header({ shopUrl }: { shopUrl: string }) {
+export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -36,7 +36,7 @@ export function Header({ shopUrl }: { shopUrl: string }) {
       >
         <Toolbar sx={{ minHeight: 76, gap: 1, px: { xs: 2, md: 4 } }}>
           <Box component={Link} href="/" sx={{ display: "flex", mr: "auto", flexShrink: 0 }}>
-            <Box component="img" src={asset("/logo.webp")} alt="FOWYAD" width={398} height={96} sx={{ height: 48, width: "auto" }} />
+            <Box component="img" src={asset("/logo.svg")} alt="FOWYAD" width={3520} height={910} sx={{ height: 48, width: "auto" }} />
           </Box>
           <Stack direction="row" spacing={0.5} sx={{ display: { xs: "none", md: "flex" } }}>
             {LINKS.map((link) => (
@@ -51,15 +51,6 @@ export function Header({ shopUrl }: { shopUrl: string }) {
               </Button>
             ))}
           </Stack>
-          <Button
-            href={shopUrl}
-            target="_blank"
-            rel="noreferrer"
-            variant="contained"
-            sx={{ display: { xs: "none", md: "inline-flex" } }}
-          >
-            Купить FOWYAD
-          </Button>
           <IconButton
             color="inherit"
             aria-label="Открыть меню"
@@ -89,9 +80,6 @@ export function Header({ shopUrl }: { shopUrl: string }) {
               {link.label}
             </Button>
           ))}
-          <Button href={shopUrl} target="_blank" rel="noreferrer" variant="contained">
-            Купить FOWYAD
-          </Button>
         </Stack>
       </Drawer>
     </>

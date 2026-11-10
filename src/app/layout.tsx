@@ -6,7 +6,6 @@ import { YandexMetrika } from "@/components/YandexMetrika";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ThemeRegistry } from "@/components/ThemeRegistry";
-import { OZON_BRAND_URL } from "@/lib/config";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s — FOWYAD",
   },
   description:
-    "Для Opel есть оптика и кузовные детали FOWYAD: фары, фонари, бамперы и пластик. Купить можно на нескольких площадках, включая Ozon.",
+    "Оптика и кузовные детали FOWYAD для Opel и Vauxhall. Розница на Ozon и на Авито. Оптовые поставки в Москве: Талдомская ул., д. 2Б, ежедневно с 8:00 до 19:00.",
   applicationName: "FOWYAD",
   authors: [{ name: "FOWYAD", url: "http://www.fowyad.com/ru_RU/index.html" }],
   creator: "FOWYAD",
@@ -46,13 +45,13 @@ export const metadata: Metadata = {
     url: "/",
     title: "Фары и кузовные детали FOWYAD для Opel и Vauxhall",
     description:
-      "Для Opel есть оптика и кузовные детали FOWYAD. Купить можно на нескольких площадках, включая Ozon.",
+      "Оптика и кузовные детали FOWYAD для Opel. Розница на Ozon и на Авито. Оптовые поставки в Москве принимает Евгений.",
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "FOWYAD — фары и кузовные детали для Opel", type: "image/jpeg" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Фары и кузовные детали FOWYAD для Opel и Vauxhall",
-    description: "Для Opel есть оптика и кузовные детали FOWYAD. Купить можно на нескольких площадках, включая Ozon.",
+    description: "Оптика и кузовные детали FOWYAD для Opel. Розница на Ozon и на Авито. Оптовые поставки в Москве принимает Евгений.",
     images: ["/og.jpg"],
   },
   robots: {
@@ -68,9 +67,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <ThemeRegistry>
           <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-            <Header shopUrl={OZON_BRAND_URL} />
+            <Header />
             <Box sx={{ flex: 1 }}>{children}</Box>
-            <Footer shopUrl={OZON_BRAND_URL} />
+            <Footer />
             <CookieConsent />
             <YandexMetrika />
           </Box>

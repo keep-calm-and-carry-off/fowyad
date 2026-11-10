@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { models } from "@/content/home";
-import { displayFont, Lead, Section, SectionHead, ShopButton } from "./primitives";
+import { ActionRow, AvitoButton, displayFont, Lead, Section, SectionHead, ShopButton } from "./primitives";
 
 export function ModelsSection() {
   return (
@@ -12,8 +12,8 @@ export function ModelsSection() {
         sx={{
           mt: 5,
           display: "grid",
-          gridTemplateColumns: { xs: "1fr 1fr", md: "repeat(4, 1fr)" },
-          columnGap: { md: 4 },
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
+          columnGap: { sm: 4 },
           rowGap: { xs: 0, md: 5 },
         }}
       >
@@ -23,7 +23,11 @@ export function ModelsSection() {
             sx={{
               py: { xs: 2.5, md: 0 },
               minWidth: 0,
-              borderTop: { xs: index < 2 ? "none" : "1px solid", md: index < 4 ? "none" : "1px solid" },
+              borderTop: {
+                xs: index === 0 ? "none" : "1px solid",
+                sm: index < 2 ? "none" : "1px solid",
+                md: index < 4 ? "none" : "1px solid",
+              },
               borderColor: "divider",
             }}
           >
@@ -41,13 +45,16 @@ export function ModelsSection() {
             >
               {model.name}
             </Typography>
-            <Typography color="text.secondary" sx={{ mt: 1.5, maxWidth: 300, lineHeight: 1.7 }}>
+            <Typography color="text.secondary" sx={{ mt: 1.5, lineHeight: 1.7 }}>
               {model.text}
             </Typography>
           </Box>
         ))}
       </Box>
-      <ShopButton sx={{ mt: 5 }}>Купить для своей модели</ShopButton>
+      <ActionRow sx={{ mt: 5 }}>
+        <ShopButton>Купить на Ozon</ShopButton>
+        <AvitoButton>Купить на Авито</AvitoButton>
+      </ActionRow>
     </Section>
   );
 }

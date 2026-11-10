@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import type { SxProps, Theme } from "@mui/material/styles";
 import type { ReactNode } from "react";
-import { OZON_BRAND_URL } from "@/lib/config";
+import { AVITO_SHOP_URL, OZON_SHOP_URL } from "@/lib/config";
 
 export const displayFont = "var(--font-unbounded), sans-serif";
 
@@ -97,9 +97,39 @@ export function FactStack({
   );
 }
 
+const shopButtonSx = { minWidth: { xs: 0, sm: 208 } } as const;
+
+export function ActionRow({ children, sx }: { children: ReactNode; sx?: SxProps<Theme> }) {
+  return (
+    <Stack
+      direction={{ xs: "column", sm: "row" }}
+      spacing={1.5}
+      useFlexGap
+      sx={[
+        {
+          flexWrap: "wrap",
+          alignItems: { xs: "stretch", sm: "center" },
+          "& > .MuiButton-root": { width: { xs: "100%", sm: "auto" } },
+        },
+        ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
+      ]}
+    >
+      {children}
+    </Stack>
+  );
+}
+
 export function ShopButton({ children, sx }: { children: ReactNode; sx?: SxProps<Theme> }) {
   return (
-    <Button href={OZON_BRAND_URL} target="_blank" rel="noreferrer" variant="contained" sx={sx}>
+    <Button href={OZON_SHOP_URL} target="_blank" rel="noreferrer" variant="contained" sx={[shopButtonSx, ...(Array.isArray(sx) ? sx : [sx])]}>
+      {children}
+    </Button>
+  );
+}
+
+export function AvitoButton({ children, sx }: { children: ReactNode; sx?: SxProps<Theme> }) {
+  return (
+    <Button href={AVITO_SHOP_URL} target="_blank" rel="noreferrer" variant="contained" sx={[shopButtonSx, ...(Array.isArray(sx) ? sx : [sx])]}>
       {children}
     </Button>
   );

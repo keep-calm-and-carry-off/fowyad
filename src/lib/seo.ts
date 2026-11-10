@@ -1,19 +1,52 @@
-import { FACTORY_URL, OZON_BRAND_URL } from "@/lib/config";
+import { AVITO_SHOP_URL, FACTORY_URL, OZON_SHOP_URL, WHOLESALE } from "@/lib/config";
 import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/site";
 
+const week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
 export function storeJsonLd() {
+  const address = {
+    "@type": "PostalAddress",
+    streetAddress: WHOLESALE.street,
+    addressLocality: WHOLESALE.city,
+    postalCode: WHOLESALE.postalCode,
+    addressCountry: "RU",
+  };
+  const hours = {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: week,
+    opens: WHOLESALE.opens,
+    closes: WHOLESALE.closes,
+  };
   return {
     "@context": "https://schema.org",
     "@type": "AutoPartsStore",
-    name: `${SITE_NAME} — оптика и кузовные детали для Opel`,
+    name: SITE_NAME,
+    legalName: WHOLESALE.legalName,
+    taxID: WHOLESALE.inn,
     url: SITE_URL,
     image: absoluteUrl("/logo.png"),
+    logo: absoluteUrl("/logo.png"),
     description:
-      "Для Opel есть оптика и кузовные детали FOWYAD. Купить можно на нескольких площадках, включая Ozon.",
+      "Оптика и кузовные детали FOWYAD для Opel и Vauxhall. Розница на Ozon и на Авито. Оптовые поставки в Москве принимает Евгений.",
+    telephone: WHOLESALE.phone,
+    email: WHOLESALE.email,
+    address,
+    openingHoursSpecification: hours,
     areaServed: "RU",
     currenciesAccepted: "RUB",
     brand: { "@type": "Brand", name: SITE_NAME },
-    sameAs: [OZON_BRAND_URL, FACTORY_URL],
+    identifier: { "@type": "PropertyValue", name: "ОГРНИП", value: WHOLESALE.ogrnip },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "wholesale",
+      name: WHOLESALE.person,
+      telephone: WHOLESALE.phone,
+      email: WHOLESALE.email,
+      areaServed: "RU",
+      availableLanguage: "Russian",
+      hoursAvailable: hours,
+    },
+    sameAs: [OZON_SHOP_URL, AVITO_SHOP_URL, FACTORY_URL],
   };
 }
 
