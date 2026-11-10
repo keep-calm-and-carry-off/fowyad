@@ -60,7 +60,7 @@ function replaceEmblem(model: THREE.Object3D, mesh: THREE.Mesh, material: THREE.
   mesh.visible = false;
 }
 
-function findRim(wheel: THREE.Object3D) {
+function findRim(wheel: THREE.Object3D): THREE.Mesh | null {
   let rim: THREE.Mesh | null = null;
   wheel.traverse((child) => {
     const mesh = child as THREE.Mesh;
