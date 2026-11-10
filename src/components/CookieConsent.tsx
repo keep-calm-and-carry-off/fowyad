@@ -36,14 +36,15 @@ export function CookieConsent() {
       }}
     >
       <Typography id="cookie-title" sx={{ fontWeight: 700 }}>
-        Согласие
+        Мы используем файлы cookie
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        «Принять» — согласие на cookie и на обработку персональных данных. «Отклонить» оставляет сайт открытым.
+        Они запоминают ваш выбор и, если вы согласитесь, помогают считать посещения. Нажимая «Принять», вы соглашаетесь на cookie и на обработку персональных данных. Подробнее — в{" "}
+        <Link component={NextLink} href="/consent" underline="hover" color="inherit">
+          политике использования файлов cookie
+        </Link>
+        .
       </Typography>
-      <Link component={NextLink} href="/consent" underline="hover" sx={{ display: "inline-block", mt: 1.5 }}>
-        Текст согласия
-      </Link>
       <Stack direction="row" spacing={1.5} sx={{ mt: 2 }}>
         <Button variant="contained" onClick={() => chooseConsent("all")}>
           Принять
