@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { BuyPage } from "@/components/buy/BuyPage";
 import { buyPages } from "@/content/buy";
 
-const page = buyPages.find((item) => item.path === "/bamper-opel");
-
-if (!page) {
-  throw new Error("Нет страницы бампера");
-}
+const page = buyPages.find((item) => item.path === "/bamper-opel") ?? buyPages[3];
 
 export const metadata: Metadata = {
   title: page.title,
