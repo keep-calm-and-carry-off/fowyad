@@ -27,7 +27,7 @@ export default function PrivacyPage() {
       </Typography>
 
       <Section title="1. Кто ведёт сайт">
-        Сайт рассказывает, что для Opel есть оптика и кузовные детали FOWYAD. Розницу оформляют на Ozon и на Авито. Договор купли-продажи, оплата, доставка, возврат и персональные данные розничного покупателя оформляются на выбранной площадке, а не здесь. Оптовый заказ согласуют с {WHOLESALE.person} по контактам ниже. Заводская страница бренда — отдельный сайт{" "}
+        Сайт рассказывает, что для Opel есть оптика и кузовные детали FOWYAD. Розницу оформляют на Ozon и на Авито. Договор купли-продажи, оплата, доставка, возврат и персональные данные розничного покупателя оформляются на выбранной площадке, а не здесь. Оптовый заказ согласуют по контактам на главной. Заводская страница бренда — отдельный сайт{" "}
         <Link href={FACTORY_URL} target="_blank" rel="noreferrer">
           fowyad.com
         </Link>
@@ -37,10 +37,7 @@ export default function PrivacyPage() {
       <Section title="2. Оператор">
         Оператор обработки, описанной в этом документе, — {WHOLESALE.legalName}, ИНН {WHOLESALE.inn}, ОГРНИП {WHOLESALE.ogrnip}. Адрес: {WHOLESALE.postalCode}, {WHOLESALE.city}, {WHOLESALE.street}. Часы для оптовых обращений: {WHOLESALE.hoursLabel}. По вопросам персональных данных пишите на{" "}
         <Link href={`mailto:${WHOLESALE.email}`}>{WHOLESALE.email}</Link> или звоните{" "}
-        <Link href={`tel:${WHOLESALE.phone}`}>
-          {WHOLESALE.phoneLabel}
-        </Link>
-        , {WHOLESALE.person}. Жалобу на обработку можно подать в Роскомнадзор.
+        <Link href={`tel:${WHOLESALE.phone}`}>{WHOLESALE.phoneLabel}</Link>. Жалобу на обработку можно подать в Роскомнадзор.
       </Section>
 
       <Section title="3. Какие данные есть, а каких нет">

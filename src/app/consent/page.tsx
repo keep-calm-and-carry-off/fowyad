@@ -43,7 +43,7 @@ export default function ConsentPage() {
 
       <Section title="3. Кто обрабатывает и для чего">
         Оператор — {WHOLESALE.legalName}, ИНН {WHOLESALE.inn}, ОГРНИП {WHOLESALE.ogrnip}, {WHOLESALE.postalCode}, {WHOLESALE.city}, {WHOLESALE.street}. Вопросы по этой политике:{" "}
-        <Link href={`mailto:${WHOLESALE.email}`}>{WHOLESALE.email}</Link>, {WHOLESALE.phoneLabel}, {WHOLESALE.person}.
+        <Link href={`mailto:${WHOLESALE.email}`}>{WHOLESALE.email}</Link>, {WHOLESALE.phoneLabel}.
         <br />
         <br />
         Состав сведений визита: cookie счётчика, IP-адрес, адрес страницы, источник перехода, данные браузера, клики и запись вебвизора — как посетитель двигался по страницам. Имя, телефон и платёжные данные через эту обработку не собираются.

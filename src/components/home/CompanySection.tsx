@@ -26,7 +26,7 @@ export function CompanySection() {
             Оптика и кузовные детали для Opel
           </Typography>
           <Typography color="text.secondary" sx={{ mt: 2, lineHeight: 1.7, maxWidth: 520 }}>
-            Для Opel есть фары, стёкла, фонари, бамперы, решётки и пластик. Завод — Zhenjiang Fowyad Auto Parts Co., Ltd. В России розница — на Ozon и на Авито, оптовые заказы принимает Евгений в Москве.
+            Для Opel есть фары, стёкла, фонари, бамперы, решётки и пластик. Завод — Zhenjiang Fowyad Auto Parts Co., Ltd. В России розница — на Ozon и на Авито, оптовые заказы принимают в Москве.
           </Typography>
           <ActionRow sx={{ mt: 3.5 }}>
             <ShopButton>Купить на Ozon</ShopButton>

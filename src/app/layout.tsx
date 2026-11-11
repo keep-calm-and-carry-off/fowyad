@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     url: "/",
     title: "Фары и кузовные детали FOWYAD для Opel и Vauxhall",
     description:
-      "Оптика и кузовные детали FOWYAD для Opel. Розница на Ozon и на Авито. Оптовые поставки в Москве принимает Евгений.",
+      "Оптика и кузовные детали FOWYAD для Opel. Розница на Ozon и на Авито. Оптовые поставки в Москве, ежедневно с 8:00 до 19:00.",
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "FOWYAD — фары и кузовные детали для Opel", type: "image/jpeg" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Фары и кузовные детали FOWYAD для Opel и Vauxhall",
-    description: "Оптика и кузовные детали FOWYAD для Opel. Розница на Ozon и на Авито. Оптовые поставки в Москве принимает Евгений.",
+    description: "Оптика и кузовные детали FOWYAD для Opel. Розница на Ozon и на Авито. Оптовые поставки в Москве, ежедневно с 8:00 до 19:00.",
     images: ["/og.jpg"],
   },
   robots: {

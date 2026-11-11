@@ -30,7 +30,7 @@ export function Footer() {
           <Box component="address" sx={{ maxWidth: 420, fontStyle: "normal" }}>
             <Box component="img" src={asset("/logo.svg")} alt="FOWYAD" width={3520} height={910} sx={{ height: 40, width: "auto" }} />
             <Typography variant="body2" color="text.secondary" sx={{ mt: 2, lineHeight: 1.7 }}>
-              Розница FOWYAD — на Ozon и на Авито. Оптовые заказы принимает {WHOLESALE.person}, {WHOLESALE.hoursLabel}.
+              Розница FOWYAD — на Ozon и на Авито. Оптовые заказы — в Москве, {WHOLESALE.hoursLabel}.
             </Typography>
             <Stack spacing={0.75} sx={{ mt: 2 }}>
               <Link href={`tel:${WHOLESALE.phone}`} color="text.primary" underline="hover">

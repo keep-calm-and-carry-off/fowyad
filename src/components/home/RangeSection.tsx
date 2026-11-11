@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import { buyPages } from "@/content/buy";
 import { range } from "@/content/home";
 import { displayFont, Lead, Section, SectionHead } from "./primitives";
 
@@ -8,6 +10,13 @@ export function RangeSection() {
     <Section id="range" divided={false}>
       <SectionHead kicker="01" title="Для Opel" />
       <Lead>Для Opel есть оптика и кузовные детали одной марки: фары, бамперы, решётки и пластик.</Lead>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mt: 3 }}>
+        {buyPages.map((page) => (
+          <Link key={page.path} href={page.path} underline="hover">
+            {page.title}
+          </Link>
+        ))}
+      </Box>
       <Box
         sx={{
           mt: 5,

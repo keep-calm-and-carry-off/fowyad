@@ -27,7 +27,7 @@ export function storeJsonLd() {
     image: absoluteUrl("/logo.png"),
     logo: absoluteUrl("/logo.png"),
     description:
-      "Оптика и кузовные детали FOWYAD для Opel и Vauxhall. Розница на Ozon и на Авито. Оптовые поставки в Москве принимает Евгений.",
+      "Оптика и кузовные детали FOWYAD для Opel и Vauxhall. Розница на Ozon и на Авито. Оптовые поставки в Москве, ежедневно с 8:00 до 19:00.",
     telephone: WHOLESALE.phone,
     email: WHOLESALE.email,
     address,
@@ -39,7 +39,6 @@ export function storeJsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "wholesale",
-      name: WHOLESALE.person,
       telephone: WHOLESALE.phone,
       email: WHOLESALE.email,
       areaServed: "RU",
